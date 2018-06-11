@@ -3,9 +3,9 @@ import {ConnectionPool, config, IResult} from "mssql";
 const serve = express();
 
 const conf: config = {
-    user: 'sa',
+    user: 'Dieudonné',
     database: 'testdb',
-    server: 'TOSHIBA\\MSSQLSERVER'
+    server: 'TOSHIB'
 }
 
 

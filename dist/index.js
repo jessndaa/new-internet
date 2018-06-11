@@ -11,9 +11,9 @@ var express_1 = __importDefault(require("express"));
 var mssql_1 = require("mssql");
 var serve = express_1.default();
 var conf = {
-    user: 'sa',
+    user: 'Dieudonné',
     database: 'testdb',
-    server: 'TOSHIBA\\MSSQLSERVER'
+    server: 'TOSHIB'
 };
 serve.get('', function (req, res) {
     var pool = new mssql_1.ConnectionPool(conf);
