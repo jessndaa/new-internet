@@ -9,15 +9,19 @@ import { Connector } from './config';
 // console.log(Connector.comparePass("123456789", hash));
 
 const app = express();
+try {
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
+    app.use(cors());
+    app.use(express.static(path.join(__dirname,'public')));
+    app.use('/api', router);
+    app.get(/[^api][^api][^api]$.*/, (req, res) => {
+        res.sendfile(path.join(__dirname,'front/index.html'));
+    })   
+} catch (error) {
+    
+}
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(cors());
-app.use(express.static(path.join(__dirname,'public')));
-app.use('/api', router);
-app.get(/[^api][^api][^api]$.*/, (req, res) => {
-    res.sendfile(path.join(__dirname,'front/index.html'));
-})
 
 // TODO : dev mode
 // A utiliser pour changer le port
