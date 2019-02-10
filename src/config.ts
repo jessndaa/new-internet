@@ -2,7 +2,7 @@ import * as mysql from 'mysql';
 import * as bcrypt from 'bcrypt'
 
 export class Connector {
-    private connection: mysql.Connection;
+    public connection: mysql.Connection;
 
     private static _instatnce: Connector;
     public static get instance(): Connector {
@@ -29,9 +29,7 @@ export class Connector {
         //     password : '',
         //     database : 'pf_db',
         // });
-        this.connection.connect((err) =>{
-            // if (err) throw err;            
-        });
+
                 /**
          * fin config db
          */
@@ -47,18 +45,38 @@ export class Connector {
        return bcrypt.compareSync(enterpass, hashed); 
     }
     public All = (table: String, func: mysql.queryCallback) => {
-        this.connection.query(`SELECT * FROM ${table}`, func);
+        this.connection.connect(() =>{
+            this.connection.query(`SELECT * FROM ${table}`, func)
+            .on('result', () => {
+                this.connection.end();
+            });
+        });
+
     }
 
     public where = (table: String, column: String, wr: String, func: mysql.queryCallback) => {
-        this.connection.query(`SELECT * FROM ${table} WHERE ${column} = ?`,[wr], func);
+        this.connection.connect(() =>{
+            this.connection.query(`SELECT * FROM ${table} WHERE ${column} = ?`,[wr], func)
+            .on('result', () => {
+                this.connection.end();
+            });
+        });
     }
 
     public limit = (table: String, limit: number, func: mysql.queryCallback) => {
-        this.connection.query(`SELECT * FROM ${table} limit ${limit}`, func);
+        this.connection.connect(() =>{
+                this.connection.query(`SELECT * FROM ${table} limit ${limit}`, func)
+                    .on('result',() => {
+                        this.connection.end();
+                    });   
+        });
     }
 
     public add = (sql: string,  func: mysql.queryCallback) => {
-        this.connection.query(sql, func);
+        this.connection.connect(() =>{
+                this.connection.query(sql, func).on('result', () => {
+                    this.connection.end();
+                });
+            });
     }
 }
