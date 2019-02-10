@@ -12,16 +12,31 @@ export class Connector {
         return this._instatnce;
     }
     constructor() {
+        // TODO : prod-mode
         this.connection = mysql.createConnection({
             host     : 'eu-cdbr-west-02.cleardb.net',
             user     : 'b14c075b54a698',
             password : 'c17fe34b',
             database : 'heroku_90bebde67583574',
         });
+
+        /**
+         * configuration de la base de donné mySql
+         */
+        // this.connection = mysql.createConnection({
+        //     host     : 'localhost',
+        //     user     : 'root',
+        //     password : '',
+        //     database : 'pf_db',
+        // });
         this.connection.connect((err) =>{
-            if (err) throw err;            
+            // if (err) throw err;            
         });
+                /**
+         * fin config db
+         */
     }
+
     public static formatStr(str: any){
         return   mysql.escape(str);
     }
