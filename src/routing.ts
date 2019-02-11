@@ -90,11 +90,11 @@ export class Contact {
              VALUES (${ Connector.formatStr(data.noms)}, 
              ${Connector.formatStr(data.prenom)}, ${Connector.formatStr(data.email)}, 
              ${Connector.formatStr(data.objet)}, ${Connector.formatStr(data.message)}, curdate())`, (er, result) => {
-            if (er) throw er;
+            
             Connector.instance.add(
                 `INSERT INTO newsletters 
                  VALUES (NULL, ${Connector.formatStr(data.email)}, NULL)`, (er, result) => {
-                if (er) throw er;
+                
             })
             res.json(result);
         });
@@ -142,7 +142,7 @@ export class PrendreRendez {
              ${Connector.formatStr(data.nom)}, ${Connector.formatStr(data.prenom)},
              ${Connector.formatStr(data.date)}, ${Connector.formatStr(data.email)}
              )`, (er, result) => {
-            if (er) throw er;
+            
             res.json({ok:true})
         }
         ) 
@@ -153,7 +153,7 @@ export class PrendreRendez {
         const date = new Date(data.date);
         Connector.instance.add(
         `SELECT COUNT(*) number FROM client_rendez_vous WHERE date_client = '${data.date}';`, (er, result) => {
-            if (er) throw er;
+            
             res.json(result)
         }
         ) 
@@ -172,7 +172,7 @@ export class Client {
             SELECT * from ${Client.table}
             WHERE email = '${req.query.name}'
             `, (er, re) => {
-                if (er) throw er;
+                
                 if (re[0] && re[0].motpass) {
                     if (Connector.comparePass(
                         req.query.pass, re[0].motpass)) {
@@ -203,7 +203,7 @@ export class Client {
             ${Connector.formatStr(data.nom)}, ${Connector.formatStr(data.prenom)}, 
             ${Connector.formatStr(hash)}, ${Connector.formatStr(data.email)},
             ${Connector.formatStr(data.adresse)}, ${Connector.formatStr(data.telephone)}, ${Connector.formatStr(data.typeCompte)})`, (er, result) => {
-                if (er) throw er;
+                
                 res.json({ok:true})
             }
         ) 
@@ -229,7 +229,7 @@ export class Demande {
             ${Connector.formatStr(data.objet)}, 
             curdate(),
             ${Connector.formatStr(data.type)})`, (er, results) => {
-                if (er) throw er;
+                
                 res.json({ok:true})
             }
         )
@@ -242,7 +242,7 @@ export class Demande {
             `SELECT * FROM ${Demande.table}
                 WHERE client_code_auth = '${data.auth}'
                 ORDER BY id desc limit 1`, (er, result) => {
-                if (er) throw er;
+                
                 console.log(result);
                 res.json(result)
             }
@@ -259,7 +259,7 @@ export class Demande {
             `SELECT * FROM ${Demande.table}
                 WHERE client_code_auth = '${data.auth} '
                 ORDER BY id desc`, (er, result) => {
-                if (er) throw er;
+                
                 console.log(result);
                 res.json(result)
             }
