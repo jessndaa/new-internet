@@ -18,7 +18,7 @@ export class Connector {
             user     : 'b14c075b54a698',
             password : 'c17fe34b',
             database : 'heroku_90bebde67583574',
-        });
+        }); 
 
         /**
          * configuration de la base de donné mySql
