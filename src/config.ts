@@ -47,6 +47,7 @@ export class Connector {
        return bcrypt.compareSync(enterpass, hashed); 
     }
     public All = (table: String, func: mysql.queryCallback) => {
+        
         this.connection.getConnection(function(err: any, con: any) {
             con.query(`SELECT * FROM ${table}`, func, )
             .on('end', () => {
