@@ -33,7 +33,7 @@ export class Simple {
                 .replace("<span class=\"searchmatch\">","").replace("</span>","")
                 .replace("<span class=\"searchmatch\">","").replace("</span>","")
                 .replace("<span class=\"searchmatch\">","").replace("</span>","");
-                res.end(wiki_res)  
+                res.end("Sélon Wikipédia, "+wiki_res)  
             })
             .catch(function name() {
                 res.end("response"); 
