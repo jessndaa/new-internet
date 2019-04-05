@@ -3,3 +3,4 @@ import { Simple } from './routing';
 export const router = express.Router();
 
 router.post('/fetcher', Simple.index);
+router.post('/wikipage', Simple.wikipediaindex);
