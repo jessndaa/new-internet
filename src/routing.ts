@@ -28,6 +28,15 @@ export class Simple {
             })
             .then(function name(body) {
                 let wiki_res = body.query.search[0].snippet as string;
+                wiki_res = wiki_res.replace("<span class=\"searchmatch\">","").replace("</span>","")
+                .replace("<span class=\"searchmatch\">","").replace("</span>","")
+                .replace("<span class=\"searchmatch\">","").replace("</span>","")
+                .replace("<span class=\"searchmatch\">","").replace("</span>","")
+                .replace("<span class=\"searchmatch\">","").replace("</span>","");
+                let splitter = wiki_res.split(' ');
+                if(splitter[splitter.length - 1] === "homme"){
+                    wiki_res += " politique";
+                }
                 res.json({
                     "speech": "Sélon Wikipédia, "+wiki_res
                 });
