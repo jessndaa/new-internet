@@ -57,5 +57,8 @@ export class Simple {
                     });
                     break;
             }
+            res.end({
+                "speech": "Nous n'avons pas d'information sur votre recherche."
+            });
     }
 }
