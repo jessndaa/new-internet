@@ -21,7 +21,7 @@ export class Simple {
     }
 
     public static async wikipediaindex(req: express.Request, res: express.Response)  {
-            let cc = req.body.result.parameters.wiki_name;
+            let cc = req.body.result.parameters.any;
             fetch("https://fr.wikipedia.org/w/api.php?format=json&utf8=&action=query&list=search&srsearch="+cc+"&srlimit=1")
             .then(function name(result) {
                 return result.json();
@@ -38,9 +38,9 @@ export class Simple {
                 });
             })
             .catch(function name() {
-                res.end("response"); 
+                res.end({
+                    "speech": "Nous n'avons pas d'information sur votre recherche."
+                }); 
             })
-
-       
     }
 }
