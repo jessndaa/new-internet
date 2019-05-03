@@ -85,7 +85,7 @@ class Simple {
     }
     static async getInfoDay(req, res, parameters) {
         var fs = firebase_admin_1.firestore();
-        req.body.sessionId = "+234820826571";
+        req.body.sessionId = "+243820826571";
         var student = await fs.collection("student").where("phone", "==", req.body.sessionId).get();
         var std = new university_models_1.Student();
         student.forEach((value) => {

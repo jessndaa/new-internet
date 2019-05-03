@@ -84,7 +84,7 @@ export class Simple {
     
     private static async getInfoDay(req: express.Request, res: express.Response, parameters: any) {
         var fs = firestore();
-        req.body.sessionId = "+234820826571"
+        req.body.sessionId = "+243820826571"
         var student = await fs.collection("student").where("phone", "==", req.body.sessionId).get();
         var std = new Student();
         student.forEach((value)=>{
