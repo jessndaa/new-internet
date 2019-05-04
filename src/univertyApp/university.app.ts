@@ -17,7 +17,7 @@ export class UniversityApp {
         try {
             result = await fs.collection("student").add(data);
             res.send({
-                "speech": `${req.body.result.parameters.any}, nous avons enregistré vos informations vous pouvez maintenant avoir des information sur votre promotion.`
+                "speech": `${req.body.result.parameters.any}, nous avons enregistré vos informations vous pouvez maintenant avoir des information sur votre promotion(${req.body.result.parameters.promotion}).`
             });    
         } catch (error) {
             res.send({
