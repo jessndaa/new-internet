@@ -17,11 +17,11 @@ export class UniversityApp {
         try {
             result = await fs.collection("student").add(data);
             res.send({
-                "speach": `${req.body.result.parameters.any}, nous avons enregistré vos informations vous pouvez maintenant avoir des information sur votre promotion.`
+                "speech": `${req.body.result.parameters.any}, nous avons enregistré vos informations vous pouvez maintenant avoir des information sur votre promotion.`
             });    
         } catch (error) {
             res.send({
-                "speach": `${req.body.result.parameters.any}, nous n'avons enregistré vos veillez reesyer et continuer.`
+                "speech": `${req.body.result.parameters.any}, nous n'avons enregistré vos veillez reesyer et continuer.`
             })
         }   
 
