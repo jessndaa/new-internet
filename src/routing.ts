@@ -42,19 +42,23 @@ export class Simple {
                         UniversityApp.getInfoDay(req, res, parameters)
                         break;
                     case "univ.student.present.all":
-                        console.log("oooops");
-                    
                         await UniversityApp.storeStudent(req, res, parameters)
                         break;
+                    case "univ.promotion.inetrrogation":
+                        await UniversityApp.getInterroDate(req, res, parameters)
+                        break;
+                    case "univ.promotion.tp.about":
+                        await UniversityApp.getHaveTp(req, res, parameters)
+                        break;
                     default:
-                        res.end({
+                        res.json({
                             "speech": "Nous n'avons pas d'information sur votre recherche."
                         });
                         break;
                 }                
             } catch (error) {
-                res.end({
-                    "speech": "Nous n'avons pas d'information sur votre recherche."
+                res.json({
+                    "speech":error.message
                 });
             }
     }
