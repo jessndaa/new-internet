@@ -137,17 +137,17 @@ export class UniversityApp {
         
         var student = await this.getStudent(req.body.sessionId);
 
-        var tpRef = await fs.collection("tp").where("promotion", "==", student.promotion ).get();
+        var tpRef = await fs.collection("tp").where("promotion", "==",(student == undefined)? "" : student.promotion ).get();
         var tps: TP;
         var lastTp: Array<TP> = new Array<TP>();
-        
+         
         tpRef.forEach((e)=>{
            tps = e.data() as TP;
            if ((tps.datedepot as Date).getDate() > Date.now()) {
                lastTp.push(tps)
            }
         });
-        var endMessage = "vous avez tp de :";
+        var endMessage = "vous avez tp de : ";
         if (lastTp.length > 0) {
             for (let index = 0; index < lastTp.length; index++) {
                 const element = lastTp[index];
@@ -173,6 +173,6 @@ export class UniversityApp {
             console.log("id:" + e.id);
             student = e.data() as Student;
         })
-        return (student as unknown as Student)
+        return (student as Student | undefined)
     }
 }
