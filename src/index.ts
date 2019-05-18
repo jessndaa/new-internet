@@ -9,7 +9,8 @@ import { initializeApp, credential, firestore } from 'firebase-admin';
 // const hash2 = "$2b$10$CJL2kfMvvHkl9EGushhAjexpmDHUvYV27QWZmMWXVenmezSQDjnTC";
 // console.log(Connector.comparePass("123456789", hash));
 initializeApp({
-    credential: credential.cert(require('../public/small-talk-1b8d3-4376ff1cb8f9.json'))
+    credential: credential.cert(require('../public/small-talk-1b8d3-4376ff1cb8f9.json')),
+    databaseURL: "https://small-talk-1b8d3.firebaseio.com"
 });
 var fs = firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true};

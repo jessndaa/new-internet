@@ -1,7 +1,12 @@
+import { Timestamp } from "@google-cloud/firestore";
+
 export class Student {
-    phone: String | undefined;
-    pame: String | undefined;
-    promotion: String | undefined;
+    id?: string;
+    phone: string | undefined;
+    name: string | undefined;
+    promotion: string | undefined;
+    promotionlabel: string | undefined;
+
 }
 
 export class Promotion {
@@ -56,7 +61,8 @@ export class TP {
     prix: string | undefined;
     condition: string | undefined;
     cours: string | undefined;
-    datedepot: Date | undefined;
-    datedebut: Date | undefined;
+    courslabel: string| undefined;
+    datedepot: Timestamp | undefined;
+    datedebut: Timestamp | undefined;
     promotion: string | undefined;
 }
